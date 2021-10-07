@@ -1,4 +1,13 @@
 # SQL
+
+## ToC
+1. [Getting Started](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#getting-started)
+2. [Select](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#select)
+3. [Naming](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#naming)
+4. [Calculation](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#calculation)
+
+---
+
 ## Getting started
 ### **Setup**
 First we need to setup some exemplary data.
