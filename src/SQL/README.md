@@ -45,7 +45,7 @@ Table: Branch
 |----------|------------|
 | B1       | London     |
 | B2       | Birmingham |
-| B3       | Liverpool  |
+| B3       | Glasgow    |
 
 ---
 
@@ -95,13 +95,14 @@ SELECT DISTINCT Location FROM ex.Customer;
 
 ## Filtering with constraints - the WHERE keyword
 
-- [ ] Keyword HAVING
-
 ### **Operators**
 > <, >, <=, >=, =, !=
 
 ### **Boolean Comparisons**
 > ```IS```, ```NOT```, ```AND```, ```OR```
+```sql
+SELECT * FROM ex.Transaction WHERE NOT Quantity = 3;
+```
 
 ### **Set**
 ```sql
@@ -122,13 +123,13 @@ SELECT * FROM ex.Article WHERE Price BETWEEN 100 AND 1000;
 > _ - any character - length: 1 (-> Wildcard)
 
 ```sql
-SELECT * FROM ex.Branch WHERE Location LIKE "L%";
+SELECT * FROM ex.Branch WHERE Location LIKE "%o_";
 ```
 
 | BranchID | Location   |
 |----------|------------|
 | B1       | London     |
-| B3       | Liverpool  |
+| B3       | Glasgow    |
 
 ### **Chaining Comparisons**
 ```sql
@@ -141,6 +142,50 @@ SELECT * FROM ex.Customer WHERE Wohnort="London" AND Credit_score > 54;
 
 ---
 
+## Aggregation
+
+> can only be used in ```SELECT``` or ```HAVING``` not with ~~```WHERE```~~
+
+### **Counting with COUNT**
+```sql
+SELECT COUNT(*) AS Purchases FROM ex.Transaction;
+```
+> returns the overall count of records -> 15
+
+```sql
+SELECT COUNT(DISTINCT CustomerID) AS Customers FROM ex.Transaction;
+```
+> returns the count of unique customer records -> 6 <br>
+> **NULLs are counted**
+
+### **Counting with SUM**
+```sql
+SELECT SUM(Quantity) FROM ex.Transaction WHERE CustomerID="C1";
+```
+> Sums up the count of transactions for a customer -> 7
+
+### **Minimums, Maximums and Averages**
+> ```MIN```, ```MAX```, ```AVG``` keywords
+```sql
+SELECT MAX(Quantity) FROM ex.Transaction;
+```
+> returns 5 (*not multiple even though there are multiple fives*)
+
+### **Filtering combined with Aggregation GROUP BY & HAVING keywords**
+```sql
+SELECT BranchID, SUM(Quantity) FROM ex.Transaction GROUP BY BranchID HAVING COUNT(*) >= 5;
+```
+> ```GROUP BY``` groups same IDs together, ```HAVING``` filters after grouping <br>
+> *```WHERE``` filters before grouping*
+
+| BranchID | Quantity |
+|----------|----------|
+| B1       | 11       |
+| B3       | 13       |
+
+
+---
+
 ## Sorting
 
 ### **Ascending and Descending Values**
@@ -149,7 +194,7 @@ SELECT * FROM ex.Customer WHERE Wohnort="London" AND Credit_score > 54;
 SELECT * FROM ex.Customer ORDER BY Location, Credit_score DESC;
 ```
 > if no order is specified ```ASC``` is the default choice <br>
-> First the Location is order, then for same Locations it is sorted by the descending credit score
+> First the Location is ordered, then for same Locations it is sorted by the descending credit score
 
 | CustomerID | Name     | Location   | Credit_score |
 |------------|----------|------------|--------------|
@@ -172,7 +217,7 @@ SELECT BranchID AS ID_Branch FROM ex.Branch;
 |-----------|------------|
 | B1        | London     |
 | B2        | Birmingham |
-| B3        | Liverpool  |
+| B3        | Glasgow    |
 
 ---
 
@@ -193,3 +238,43 @@ FROM ex.Article;
 | 200   | 100  |
 
 ---
+
+## Unions
+
+> Unions are by default ```DISTINCT```, so there is no need to write ~~```UNION DISTINCT```~~ <br>
+> ```UNION ALL``` includes duplicates
+
+```sql
+SELECT Location FROM ex.Branch
+UNION
+SELECT Location from ex.Customer;
+```
+| Location   |
+|------------|
+| London     |
+| Birmingham |
+| Glasgow    |
+| Manchester |
+| Liverpool  |
+| Cambridge  |
+
+---
+
+## Joins
+
+> ```FROM``` contains the tables which are joined <br>
+> ```WHERE``` states the base of the join which is usually the foreign key corresponding to the primary key of one of the tables <br>
+> > if none is provided you receive the Cartesian Product (A x B)
+```sql
+SELECT * FROM ex.Branch, ex.Customer;
+```
+
+### **Equi/Self Joins**
+```sql
+SELECT * FROM ex.Branch, ex.Customer WHERE Location = Location;
+```
+
+> Conditions can be added in the ```WHERE``` part with the usage of ```AND``` (eg. AND X < Y) <br>
+> Multiple joins are possible with the usage of ```AND``` followed by another join (eg. X = X and Y = Y)
+
+### **Natural, inner, outer, left, right, full**
