@@ -19,7 +19,7 @@ First we need to setup some exemplary data.
 ---
 
 Table: Customer
-| CustomerID | Name     | Location   | credit score |
+| CustomerID | Name     | Location   | Credit_score |
 |------------|----------|------------|--------------|
 | C1         | Smith    | London     | 55           |
 | C2         | Williams | Manchester | 23           |
@@ -90,6 +90,75 @@ SELECT ArticleID, Price FROM ex.Article;
 ```sql
 SELECT DISTINCT Location FROM ex.Customer;
 ```
+
+---
+
+## Filtering with constraints - the WHERE keyword
+
+- [ ] Keyword HAVING
+
+### **Operators**
+> <, >, <=, >=, =, !=
+
+### **Boolean Comparisons**
+> ```IS```, ```NOT```, ```AND```, ```OR```
+
+### **Set**
+```sql
+SELECT * FROM ex.Article WHERE Price in (100,200,300,400,500);
+```
+> returns Articles that have the same Price as elements defined in the provided set
+
+### **Border Constraints**
+```sql
+SELECT * FROM ex.Article WHERE Price BETWEEN 100 AND 1000;
+```
+> returns all Articles with a Price in the range of 100 and 1000 <br>
+> *Hint: Both of the borders are inclusive*
+
+### **Textual Pattern Matching**
+
+> % - any character - length: 0-n <br>
+> _ - any character - length: 1 (-> Wildcard)
+
+```sql
+SELECT * FROM ex.Branch WHERE Location LIKE "L%";
+```
+
+| BranchID | Location   |
+|----------|------------|
+| B1       | London     |
+| B3       | Liverpool  |
+
+### **Chaining Comparisons**
+```sql
+SELECT * FROM ex.Customer WHERE Wohnort="London" AND Credit_score > 54;
+```
+
+| CustomerID | Name     | Location   | Credit_score |
+|------------|----------|------------|--------------|
+| C1         | Smith    | London     | 55           |
+
+---
+
+## Sorting
+
+### **Ascending and Descending Values**
+> ```ASC```, ```DESC```
+```sql
+SELECT * FROM ex.Customer ORDER BY Location, Credit_score DESC;
+```
+> if no order is specified ```ASC``` is the default choice <br>
+> First the Location is order, then for same Locations it is sorted by the descending credit score
+
+| CustomerID | Name     | Location   | Credit_score |
+|------------|----------|------------|--------------|
+| C5         | Brown    | Birmingham | 43           |
+| C6         | Evans    | Cambridge  | 10           |
+| C3         | Jones    | Liverpool  | 23           |
+| C1         | Smith    | London     | 55           |
+| C4         | Wilson   | London     | 54           |
+| C2         | Williams | Manchester | 23           |
 
 ---
 
