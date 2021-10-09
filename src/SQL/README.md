@@ -1,15 +1,15 @@
 # SQL
 
 ## ToC
-1. [Getting Started](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#getting-started)
-2. [Select](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#select)
-3. [Filtering](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#filtering)
-4. [Aggregation](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#aggregation)
-5. [Sorting](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#sorting)
-6. [Naming](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#naming)
-7. [Calculation](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#calculation)
-8. [Unions](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#unions)
-9. [Joins](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#joins)
+1. [Getting Started](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#getting-started)
+2. [Select](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#select)
+3. [Filtering](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#filtering)
+4. [Aggregation](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#aggregation)
+5. [Sorting](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#sorting)
+6. [Naming](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#naming)
+7. [Calculation](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#calculation)
+8. [Unions](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#unions)
+9. [Joins](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL#joins)
 
 ---
 
