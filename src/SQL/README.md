@@ -8,15 +8,23 @@
 
 ---
 
+<br>
+
 ## Getting started
+
+<br>
+
 ### **Setup**
+
+<br>
+
 First we need to setup some exemplary data.
 
 > We create a scheme named ```ex```. <br>
 > After that we create the following Tables: <br>
-> *Hint:Use this [site](https://tableconvert.com/) to convert Markdown Tables to SQL Table Creation*
+> *Hint: Use this [site](https://tableconvert.com/) to convert Markdown Tables to SQL Table Creation*
 
----
+<br>
 
 Table: Customer
 | CustomerID | Name     | Location   | Credit_score |
@@ -28,7 +36,7 @@ Table: Customer
 | C5         | Brown    | Birmingham | 43           |
 | C6         | Evans    | Cambridge  | 10           |
 
----
+<br>
 
 Table: Article
 | ArcticleID | Tag      | Price |
@@ -38,7 +46,7 @@ Table: Article
 | A3         | TV       | 1500  |
 | A4         | Camera   | 200   |
 
----
+<br>
 
 Table: Branch
 | BranchID | Location   |
@@ -47,7 +55,7 @@ Table: Branch
 | B2       | Birmingham |
 | B3       | Glasgow    |
 
----
+<br>
 
 Table: Transaction
 | CustomerID | ArticleID | BranchID | Quantity | Date       |
@@ -70,9 +78,15 @@ Table: Transaction
 
 ---
 
+<br>
+
 # The Essentials
 
+<br>
+
 ## Select
+
+<br>
 
 ### **All Attributes - Asterisk selector**
 ```sql
@@ -80,11 +94,15 @@ SELECT * FROM ex.Article;
 ```
 > returns the entire Article Table
 
+<br>
+
 ### **Selected Attributes**
 ```sql
 SELECT ArticleID, Price FROM ex.Article;
 ```
 > returns the Article Table without the Tag column
+
+<br>
 
 ### **Duplicate removal - DISTINCT Statement**
 ```sql
@@ -93,10 +111,16 @@ SELECT DISTINCT Location FROM ex.Customer;
 
 ---
 
+<br>
+
 ## Filtering with constraints - the WHERE keyword
+
+<br>
 
 ### **Operators**
 > <, >, <=, >=, =, !=
+
+<br>
 
 ### **Boolean Comparisons**
 > ```IS```, ```NOT```, ```AND```, ```OR```
@@ -104,11 +128,15 @@ SELECT DISTINCT Location FROM ex.Customer;
 SELECT * FROM ex.Transaction WHERE NOT Quantity = 3;
 ```
 
+<br>
+
 ### **Set**
 ```sql
 SELECT * FROM ex.Article WHERE Price in (100,200,300,400,500);
 ```
 > returns Articles that have the same Price as elements defined in the provided set
+
+<br>
 
 ### **Border Constraints**
 ```sql
@@ -116,6 +144,8 @@ SELECT * FROM ex.Article WHERE Price BETWEEN 100 AND 1000;
 ```
 > returns all Articles with a Price in the range of 100 and 1000 <br>
 > *Hint: Both of the borders are inclusive*
+
+<br>
 
 ### **Textual Pattern Matching**
 
@@ -131,6 +161,8 @@ SELECT * FROM ex.Branch WHERE Location LIKE "%o_";
 | B1       | London     |
 | B3       | Glasgow    |
 
+<br>
+
 ### **Chaining Comparisons**
 ```sql
 SELECT * FROM ex.Customer WHERE Wohnort="London" AND Credit_score > 54;
@@ -142,9 +174,13 @@ SELECT * FROM ex.Customer WHERE Wohnort="London" AND Credit_score > 54;
 
 ---
 
+<br>
+
 ## Aggregation
 
 > can only be used in ```SELECT``` or ```HAVING``` not with ~~```WHERE```~~
+
+<br>
 
 ### **Counting with COUNT**
 ```sql
@@ -158,11 +194,15 @@ SELECT COUNT(DISTINCT CustomerID) AS Customers FROM ex.Transaction;
 > returns the count of unique customer records -> 6 <br>
 > **NULLs are counted**
 
+<br>
+
 ### **Counting with SUM**
 ```sql
 SELECT SUM(Quantity) FROM ex.Transaction WHERE CustomerID="C1";
 ```
 > Sums up the count of transactions for a customer -> 7
+
+<br>
 
 ### **Minimums, Maximums and Averages**
 > ```MIN```, ```MAX```, ```AVG``` keywords
@@ -170,6 +210,8 @@ SELECT SUM(Quantity) FROM ex.Transaction WHERE CustomerID="C1";
 SELECT MAX(Quantity) FROM ex.Transaction;
 ```
 > returns 5 (*not multiple even though there are multiple fives*)
+
+<br>
 
 ### **Filtering combined with Aggregation GROUP BY & HAVING keywords**
 ```sql
@@ -186,7 +228,11 @@ SELECT BranchID, SUM(Quantity) FROM ex.Transaction GROUP BY BranchID HAVING COUN
 
 ---
 
+<br>
+
 ## Sorting
+
+<br>
 
 ### **Ascending and Descending Values**
 > ```ASC```, ```DESC```
@@ -207,7 +253,11 @@ SELECT * FROM ex.Customer ORDER BY Location, Credit_score DESC;
 
 ---
 
+<br>
+
 ## Naming
+
+<br>
 
 ### **renaming Attributes - AS Keyword**
 ```sql
@@ -221,7 +271,11 @@ SELECT BranchID AS ID_Branch FROM ex.Branch;
 
 ---
 
+<br>
+
 ## Calculation
+
+<br>
 
 ### **Calculating a column based on another column**
 ```sql
@@ -238,6 +292,8 @@ FROM ex.Article;
 | 200   | 100  |
 
 ---
+
+<br>
 
 ## Unions
 
@@ -260,6 +316,8 @@ SELECT Location from ex.Customer;
 
 ---
 
+<br>
+
 ## Joins
 
 > ```FROM``` contains the tables which are joined <br>
@@ -269,12 +327,131 @@ SELECT Location from ex.Customer;
 SELECT * FROM ex.Branch, ex.Customer;
 ```
 
+JOIN Options:
+> [] optional keywords <br>
+> ```[NATURAL] [INNER] JOIN``` <br>
+> ```[NATURAL] LEFT [OUTER] JOIN``` <br>
+> ```[NATURAL] RIGHT [OUTER] JOIN``` <br>
+> ```[NATURAL] FULL [OUTER] JOIN```
+
+*Hint: including INNER and OUTER doesn't change the outcome*
+
+<br>
+
 ### **Equi/Self Joins**
 ```sql
 SELECT * FROM ex.Branch, ex.Customer WHERE Location = Location;
 ```
 
+| CustomerID | Name     | Location   | Credit_score | BranchID |
+|------------|----------|------------|--------------|----------|
+| C1         | Smith    | London     | 55           | B1       |
+| C4         | Wilson   | London     | 54           | B1       |
+| C5         | Brown    | Birmingham | 43           | B2       |
+
+> Alternatively the JOIN could be achieved in the FROM statement
+```sql
+SELECT * FROM ex.Branch JOIN ex.Customer ON Branch.Location = Customer.Location;
+```
+
 > Conditions can be added in the ```WHERE``` part with the usage of ```AND``` (eg. AND X < Y) <br>
 > Multiple joins are possible with the usage of ```AND``` followed by another join (eg. X = X and Y = Y)
 
-### **Natural, inner, outer, left, right, full**
+<br>
+
+### **Join by explicit same Attribute names - JOIN USING**
+```sql
+SELECT DISTINCT Name
+FROM ex.Customer    JOIN ex.Transaction USING (CustomerID)
+                    JOIN ex.Article USING (ArticleID)
+WHERE Tag = "Computer";
+```
+
+| Name     |
+|----------|
+| Smith    |
+| Williams |
+| Jones    |
+| Wilson   |
+
+> CustomerIDs C1, C2, C3 and C4 bought a Computer (A1), those IDs were used to obtain the corresponding ```DISTINCT``` Names
+
+<br>
+
+### **Join over all Attributes that share the same name - NATURAL JOIN**
+```sql
+SELECT DISTINCT Name
+FROM ex.Customer NATURAL JOIN ex.Transaction NATURAL JOIN ex.Article
+WHERE Tag = "Computer";
+```
+
+| Name     |
+|----------|
+| Smith    |
+| Williams |
+| Jones    |
+| Wilson   |
+
+<br>
+
+### **OUTER JOIN**
+
+> Let's suppose we have this statement given:
+
+```sql
+SELECT * FROM A <DIRECTION> JOIN B ON A.X = B.X;
+```
+
+> This table will help you understand which OUTER JOIN will cause which Attribute/record to produce NULLs
+
+|       | A    | B    |
+|-------|------|------|
+| LEFT  | All  | NULL |
+| RIGHT | NULL | All  |
+| FULL  | All* | All* |
+
+> All - contains all values of said Attribute <br>
+> NULL - contains NULLs when there is no match of said Attribute <br>
+> All* - contains all values of said Attribute, however there is also the possibility to receive NULLs depending on your records
+
+<br>
+
+### LEFT/RIGHT
+```sql
+SELECT *
+FROM ex.Customer 
+    LEFT JOIN ex.Branch ON Customer.Location = Branch.Location;
+```
+
+| CustomerID | Name     | Location   | Credit_score | BranchID |
+|------------|----------|------------|--------------|----------|
+| C1         | Smith    | London     | 55           | B1       |
+| C2         | Williams | Manchester | 23           | NULL     |
+| C3         | Jones    | Liverpool  | 23           | NULL     |
+| C4         | Wilson   | London     | 54           | B1       |
+| C5         | Brown    | Birmingham | 43           | B2       |
+| C6         | Evans    | Cambridge  | 10           | NULL     |
+
+<br>
+
+### FULL
+
+> **not supported by MySQL**
+
+```sql
+SELECT *
+FROM ex.Customer
+    FULL JOIN ex.Branch ON Customer.Location = Branch.Location;
+```
+
+| CustomerID | Name     | Location   | Credit_score | BranchID |
+|------------|----------|------------|--------------|----------|
+| C1         | Smith    | London     | 55           | B1       |
+| C2         | Williams | Manchester | 23           | NULL     |
+| C3         | Jones    | Liverpool  | 23           | NULL     |
+| C4         | Wilson   | London     | 54           | B1       |
+| C5         | Brown    | Birmingham | 43           | B2       |
+| C6         | Evans    | Cambridge  | 10           | NULL     |
+| NULL       | NULL     | Glasgow    | NULL         | B3       |
+
+---
