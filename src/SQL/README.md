@@ -3,8 +3,13 @@
 ## ToC
 1. [Getting Started](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#getting-started)
 2. [Select](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#select)
-3. [Naming](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#naming)
-4. [Calculation](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#calculation)
+3. [Filtering](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#filtering)
+4. [Aggregation](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#aggregation)
+5. [Sorting](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#sorting)
+6. [Naming](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#naming)
+7. [Calculation](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#calculation)
+8. [Unions](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#unions)
+9. [Joins](https://github.com/Big-P/Language-Compendium/tree/SQL-DB1-Script-Sync/src/SQL#joins)
 
 ---
 
@@ -113,7 +118,7 @@ SELECT DISTINCT Location FROM ex.Customer;
 
 <br>
 
-## Filtering with constraints - the WHERE keyword
+## Filtering
 
 <br>
 
