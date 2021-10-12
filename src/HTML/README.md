@@ -189,5 +189,5 @@ How are you?
 Usage with
 > buttons: value that can be retrieved to know which button was clicked
 > option: value that can be retrieved to know which option was selected
-> input: defining default values
+> input: defining default values, displayed as innerHTML
 > li: initilization for first list element, following elements are incremented based on preceding element's value
