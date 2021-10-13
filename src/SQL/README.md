@@ -26,8 +26,30 @@
 First we need to setup some exemplary data.
 
 > We create a scheme named ```ex```. <br>
+
+```sql
+CREATE SCHEMA ex;
+
+# targets our schema as the default schema for the following statements
+USE ex;
+```
+
+*if you want to delete the schema you need to use ```DROP SCHEMA```*
+
 > After that we create the following Tables: <br>
 > *Hint: Use this [site](https://tableconvert.com/) to convert Markdown Tables to SQL Table Creation*
+
+
+exemplary table creation:
+```sql
+CREATE TABLE "schema"."table1" (
+    Attribute1 INT DEFAULT 1,
+    Attribute2 VARCHAR(20) NOT NULL,
+    CONSTRAINT "constraint-name" FOREIGN KEY(Attribute1) REFERENCES table2(relatedAttributed)
+    PRIMARY KEY(Attribute1, Attribute2),
+    UNIQUE KEY(Attribute2)
+)
+```
 
 <br>
 
@@ -80,6 +102,11 @@ Table: Transaction
 | C5         | A3        | B3       | 1        | 14.01.2006 |
 | C5         | A4        | B3       | 2        | 04.02.2006 |
 | C6         | A2        | B3       | 2        | 25.03.2006 |
+
+> Adding rows:
+```sql
+INSERT INTO "schema"."Table" ("Attribute1", "Attribute2") VALUES("Attr1-Value", "Attr2-Value");
+```
 
 ---
 
