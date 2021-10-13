@@ -1,5 +1,18 @@
 # Javascript
 
+---
+
+## ToC
+
+1. [Integration](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript#Integration)
+2. [Basic Language concepts](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript#basic-language-concepts)
+3. [Variables](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript#variables)
+4. [Access to HTML](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript#access-to-html)
+5. [JSON](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript#json)
+6. [Ajax](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript#ajax)
+
+---
+
 ## Integration
 
 ### **internal**
@@ -73,6 +86,12 @@ if (value != 13) {
 }
 ```
 
+### **Equality**
+
+> = assignment <br>
+> == equality with type conversion <br>
+> === equality without type conversion
+
 ### **Loops**
 ```javascript
 while (index < 10) {
@@ -83,7 +102,6 @@ for (i=0; i<10; i++) {
     //
 }
 ```
-
 
 ### **Object Literals**
 ```javascript
@@ -138,12 +156,6 @@ button.onclick((text) => writer(text));
 ## Variables
 
 ### **var**
-### **let**
-### **const**
-
-^merge-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-### **Variables**
 ```javascript
 // declaration
 var index;
@@ -157,7 +169,13 @@ index = 1;
 }
 
 console.log(index); // 1
+```
 
+> redeclarable <br>
+> global scope
+
+### **let**
+```javascript
 // let - block scope
 let call = "hello";
 
@@ -167,7 +185,13 @@ let call = "hello";
 }
 
 console.log(call); // hello
+```
 
+> not redeclarable <br>
+> block scope
+
+### **const**
+```javascript
 const PI = 3.141;
 
 // Elements in arrays and properties in objects can be changed, however they cannot be reassigned as a whole
@@ -175,15 +199,10 @@ const chores = ["cleaning", "take out trash", "washing dishes"];
 chores[0] = "buying groceries";
 ```
 
-var redeclarable
-    global scope
-
-let not redeclarable
-    block scope
-
-const not redeclarable
-      not reassignable
-      value needs to be assigned together with declaration
+> not redeclarable <br>
+> not reassignable <br>
+> block scope <br>
+> value needs to be assigned together with declaration
 
 ---
 
@@ -193,7 +212,8 @@ const not redeclarable
 
 > The document object model refers to a tree structure of Elements within a HTML file. <br>
 
-INSERT DOM PICTURE HERE
+![Document Object Model displaying the tree structure of the elements](/../../res/DOM.png)
+[Credits](https://en.wikipedia.org/wiki/Document_Object_Model)
 
 > Let's suppose we have the following as our HTML base:
 
@@ -305,7 +325,4 @@ fetch("https://swapi.dev/api/people/3")
   .then((homeworld) => console.log(homeworld.name))
 ```
 
-## equals sign
-= assignment
-== equality
-=== object equality
+---
