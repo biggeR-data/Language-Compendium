@@ -2,7 +2,16 @@
 
 ---
 
-## The basis
+## ToC
+
+1. [Basics](https://github.com/Big-P/Language-Compendium/tree/main/src/HTML#basics)
+2. [Elements](https://github.com/Big-P/Language-Compendium/tree/main/src/HTML#elements)
+3. [Attributes](https://github.com/Big-P/Language-Compendium/tree/main/src/HTML#attributes)
+4. [Templating](https://github.com/Big-P/Language-Compendium/tree/main/src/HTML#templating)
+
+---
+
+## Basics
 
 ### **Tags**
 
@@ -41,7 +50,7 @@
 
 ---
 
-## Key Elements
+## Elements
 
 ### **Headings**
 
@@ -64,7 +73,7 @@ Full URL
 <a href="https://www.google.com">
 ```
 
-relative path based on current URL
+relative path based on current base URL
 ```html
 <a href="/faq">
 ```
@@ -111,12 +120,38 @@ relative path based on current URL
 </form>
 ```
 
-> forms are a powerful tool to receive user input and perform HTTP Methods (GET/POST/...) on URLs
-> the input tags can be extracted and processed
+> forms are a powerful tool to receive user input and perform HTTP Methods (GET/POST/...) on URLs using the action attribute <br>
+> the input tags can be extracted and processed <br>
+> form inputs can be sent via a submit input or button Element, to reset them use a reset type input or button element
 
 ### **Nav**
+
+> Wrapper for Navigation bars
+
 ### **ul**
+
+> unordered lists (bullet points)
+
+```html
+<ul>
+    <li>just</li>
+    <li>another</li>
+    <li>item</li>
+</ul>
+```
+
 ### **ol**
+
+> ordered Lists (ascending arabic number)
+
+```html
+<ol>
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+</ol>
+```
+
 ### **li**
 always wrapped in either ol or ul
 ```css
@@ -177,7 +212,7 @@ How are you?
 
 ---
 
-## Key attributes
+## Attributes
 
 ### **name**
 
@@ -191,3 +226,66 @@ Usage with
 > option: value that can be retrieved to know which option was selected
 > input: defining default values, displayed as innerHTML
 > li: initilization for first list element, following elements are incremented based on preceding element's value
+
+---
+
+## Templating
+
+> Creating templates using .ftlh files. <br>
+> They use the same basic syntax as HTML.
+ 
+### **interpolation**
+
+```html
+<html>
+    <body>
+        <h1>Hello ${customer.firstName} ${customer.lastName}!</h1>
+    </body>
+</html>
+```
+
+> interpolates provided attributes, knows to call get Methods which use the get{attributeName}() syntax
+
+### **if conditionals**
+
+> check the Java Docs to see how to inject the customer object into this template
+
+```html
+<html>
+    <body>
+        <#if customer.firstName == "John">
+            <p>Howdy John!</p>
+        <#elseif customer.firstName == "Max">
+            <p>Hi Max</p>
+        <#else>
+            <p>Hello stranger</p>
+        </#if>
+    </body>
+</html>
+```
+
+> if blocks need to be explicitly closed<br>
+> conditions can also use <, >, <=, >=, !=, ==
+
+### **iteration over lists**
+
+```html
+<ul>
+    <#list customers as customer>
+    <li>$(customer.firstName)</li>
+    </#list>
+</ul>
+```
+
+> consecutive iteration until no elements are left
+
+### **including templates in other files**
+
+```html
+<body>
+    <!-- ... -->
+    <#include "footer.ftlh">
+</body>
+```
+
+> injects the template in this file at the designated level

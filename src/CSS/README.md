@@ -2,7 +2,20 @@
 
 ---
 
-## CSS Integration
+## ToC
+
+1. [Integration](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#Integration)
+2. [Identifiers](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#identifiers)
+3. [Inheritance](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#inheritance)
+4. [Responsive Web Design](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#responsive-web-design)
+5. [Nested Styling](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#nested-styling)
+6. [Margin versus Padding](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#margin-versus-padding)
+7. [Border](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#border)
+8. [Directional Styling](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS#directional-styling)
+
+---
+
+## Integration
 
 ### **Inline**
 in a HTML file
@@ -25,7 +38,7 @@ in a HTML file
 ```
 
 ### **External**
-in a HTML file
+base HTML file
 ```html
 <head>
     <link href="style.css" type="text/css" rel="stylesheet">
@@ -43,7 +56,7 @@ h1 {
 }
 ```
 
-> The external integration is the standard nowadays.
+> The external integration is the standard nowadays. <br>
 > It is also possible to reference stylesheets from the Internet via a URL.
 
 ---
@@ -75,7 +88,7 @@ h1 {
 }
 ```
 
-> Classes can be applied to varying Tags.
+> Classes can be applied to varying Tags. <br>
 > Classes are useful to make universal changes across multiple Elements.
 
 ### **ID**
@@ -105,6 +118,7 @@ a :hover {
 
 > This identifier builds up on other identifiers and provides dynamic utility. <br>
 > In this case we are adjusting the font color when we hover over the link.
+
 ---
 
 ## Inheritance
@@ -226,7 +240,14 @@ p {
 
 ---
 
-## Influencing top, right, bottom, left
+## Directional Styling
 
-> values are received clock-wise
+> values are received clock-wise <br>
 > top right bottom left
+
+```css
+div {
+    border-style: solid;
+    border: 1px 2px 4px 8px,
+}
+```
