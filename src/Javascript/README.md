@@ -208,7 +208,7 @@ chores[0] = "buying groceries";
 
 ## Access to HTML
 
-### ***DOM**
+### **DOM**
 
 > The document object model refers to a tree structure of Elements within a HTML file. <br>
 
