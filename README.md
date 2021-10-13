@@ -1,5 +1,19 @@
-# Programming-Languages
+# Language Compendium
 This is a personal compendium of my learnings in different languages.
+
+---
+
+# ToC
+
+- [Python](https://github.com/Big-P/Language-Compendium/tree/main/src/Python)
+- [Java](https://github.com/Big-P/Language-Compendium/tree/main/src/Java)
+- [HTML](https://github.com/Big-P/Language-Compendium/tree/main/src/HTML)
+- [CSS](https://github.com/Big-P/Language-Compendium/tree/main/src/CSS)
+- [Javascript](https://github.com/Big-P/Language-Compendium/tree/main/src/Javascript)
+- [SQL](https://github.com/Big-P/Language-Compendium/tree/main/src/SQL)
+- [RegEx](https://github.com/Big-P/Language-Compendium/tree/main/src/RegEx) - Status: pending
+
+---
 
 Readme Learning
 - [Code Blocks](https://rdmd.readme.io/docs/code-blocks)
