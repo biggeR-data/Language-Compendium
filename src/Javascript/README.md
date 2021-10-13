@@ -212,7 +212,7 @@ chores[0] = "buying groceries";
 
 > The document object model refers to a tree structure of Elements within a HTML file. <br>
 
-![Document Object Model displaying the tree structure of the elements](../../res/dom.png)
+![Document Object Model displaying the tree structure of the elements](https://github.com/Big-P/Language-Compendium/blob/main/res/DOM.png)
 
 > Let's suppose we have the following as our HTML base:
 
