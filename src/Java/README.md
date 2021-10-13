@@ -1,13 +1,32 @@
-# Java-Docu
-My own personal collection of Java Code. Good to knows and more.
-
-<br>
+# Java
 
 4 Pillars of Object oriented programming: <br>
 1. Encapsulation - Keyword: modifiers (protected/private) - Visibility of Data as low as needed <br>
 2. Inheritance - Keyword: extends - Specialising smaller subgroups <br>
 3. Abstraction - Keyword: abstract - shared properties but no actual Instance <br>
 4. Polymorphism - Keyword: / - Different Things appear same outwards however are different internally <br>
+
+---
+
+## ToC
+
+1. [General](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#general)
+2. [Classes](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#classes)
+3. [Encapsulation](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#encapsulation)
+4. [Inheritance](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#inheritance)
+5. [Abstraction](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#abstraction)
+6. [Polymorphism](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#polymorphism)
+7. [Interfaces](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#interfaces)
+8. [String](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#string)
+9. [StringBuffer (Dynamic String extension)](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#stringbuffer-(dynamic-string-extension))
+10. [StringTokenizer (Splitting Strings)](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#stringtokenizer-(splitting-strings))
+11. [Files](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#files)
+12. [Exceptions](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#exceptions)
+13. [Math](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#math)
+14. [Spring](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#spring)
+15. [Servlets](https://github.com/Big-P/Language-Compendium/tree/main/src/Java#servlets)
+
+---
 
 # General
 
@@ -202,6 +221,8 @@ while (i < 7) {
 // return 0, 1, 2
 // breaks out of most inner loop, also applicable to switch-case
 ```
+
+---
 
 # Classes
 ```java
@@ -412,6 +433,8 @@ public class Person {
 // to access Class Methods: classname.static_method_name(parameters)
 ```
 
+---
+
 # Encapsulation
 
 ## Modifier
@@ -431,6 +454,8 @@ public class Person {
 | Subclass to A different package              | Yes    | Yes       | No       | No      |
 | Class B different package & no Subclass to A | Yes    | No        | No       | No      |
 
+
+---
 
 # Inheritance
 
@@ -469,6 +494,8 @@ public String toString() {
 }
 ```
 
+---
+
 # Abstraction
 
 ## Abstract Classes
@@ -496,6 +523,8 @@ public class Student extends Person {
 }
 ```
 
+---
+
 # Polymorphism
 
 ## Arrays and Classes
@@ -520,6 +549,8 @@ if (people[1] instanceof Student) {
 }
 // Objects in the Array can be accessed as their resoective Class, however not edited
 ```
+
+---
 
 # Interfaces
 ```java
@@ -567,6 +598,8 @@ Control_Panel cp2 = new B();
 cp1.calculate();                // "A implements Control_Panel's method ..."
 cp2.calculate_complex(10);      // 20
 ```
+
+---
 
 # String
 
@@ -710,6 +743,8 @@ s.trim();               // removes trailing whitespaces at the Start & End
 s.replace("ll", "yy")   // <String to be replaced>, <String replacing old one>
 ```
 
+---
+
 # StringBuffer (Dynamic String extension)
 
 ## Constructor
@@ -747,6 +782,8 @@ StringBuffer sb = new StringBuffer("Hello World");
 String s = sb.toString();           // s = "Hello World"
 ```
 
+---
+
 # StringTokenizer (Splitting Strings)
 
 ## Usage
@@ -767,6 +804,8 @@ while (st.hasMoreTokens()) {                        // Iteration for each Part
 "\r";   // Carriage Return (Same Line)
 "\f";   // Formfeed (Indicates Page Break)
 ```
+
+---
 
 # Files
 
@@ -821,6 +860,8 @@ try {
     e.printStackTrace();
 }
 ```
+
+---
 
 # Exceptions
 
@@ -954,6 +995,8 @@ try {
 }
 ```
 
+---
+
 # Math
 
 ## random
@@ -964,14 +1007,191 @@ int i;
 i = (int) (Math.random() * 10 + 1)
 ```
 
-# Package
+---
 
-## Class1
+# Spring
+
+## MVC - Model-View-Controller
+
+![Model-View-Controller relations](../../res/model-view-controller-light-blue.png)
+[Credits](https://developer.mozilla.org/en-US/docs/Glossary/MVC)
+
+### **Loading a template - GET Call**
 ```java
+package ex.am.ple;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller                                                         // Class needs to be registered as a Controller in order to be recognized
+public class HelloController {
+    
+    @GetMapping("/say-hello")                                       // register the route for a GET Call
+    public ModelAndView sayHello() {
+        ModelAndView mav = new ModelAndView("hello");               // filename of the template, usually located at /src/main/resources/templates/hello.ftlh
+        Customer myCustomer = new Customer("John", "Smith", 54);
+        mav.addObject("customer", myCustomer);                      // add the object which can be accessed via the usage pf the customer keyword in the template
+
+        return mav;
+    }
+}
 ```
 
-### **Class1 Functionality 1**
-```java
+### **Loading a template - POST Call**
 
+> Let's suppose we have this HTML file:
+
+```html
+<form action="hello" method="POST">
+    <p>Please provide your information</p>
+    name: <input type="text" name="user"/> <br>
+    e-Mail: <input type="text" name="mail"/> <br>
+    <input type="submit" value="send">
+</form>
+```
+
+```java
+package ex.am.ple;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HelloController{
+
+    @PostMapping("/hello")
+    ModelAndView sayHello(HttpServletRequest request) {
+        String userName = request.getParameter("user");
+        // ...
+    }
+}
+```
+
+> Right here we were able to register a POST Call on our /hello route. <br>
+> We can access the Element's values by referring to the name attribute.
+
+
+### **HTTP Requests**
+
+> GET Call: /greetings?user=abc
+> wants to retrieve the information tied to user abc
+> answers may be cached
+
+> POST Call: /greetings
+> sends the information that user abc is using the application
+> answers may not be cached
+
+### **Contexts - addressing Scopes with Beans**
+
+POJO
+```java
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+
+@Component                      // registers class as bean
+@RequestScope                   // or @SessionScope or @ApplicationScope; defines lifecyle
+public class Customer {
+    private String prename;
+    private Stringg surname;
+
+    // ...
+}
+```
+
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller                                             // registers class as Bean
+public class CustomerController {
+
+    @Autowired                                          // injects a bean
+    private Customer customer;
+
+    @GetMapping("/hello") ModelAndView sayHello() {
+        String firstName = customer.getPrename();       // object can be used directly without an instanciation
+
+        // ...
+    }
+}
+```
+
+### **APIs**
+
+POJO base
+```java
+public class Customer {
+    private String prename;
+    private Stringg surname;
+    private Address adress;
+    // ...
+}
+```
+
+```java
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@RestController                                                 // registers class to exchange data according to REST
+public class CustomerController {
+
+    @GetMapping("customers/{customerId}")
+    Customer getCustomer(@PathVariable String customerId) {     // no ModelAndView is used here rather the POJO class itself as return value // customerId is extracted from the path/url and used as a parameter
+        return queryCustomers(customerId);
+    }
+}
+```
+
+exemplary response
+```json
+{
+    "prename":"Tony",
+    "surname":"Stark",
+    "address": {
+        "street":"Malibu Point 10880",
+        "postalCode":"90265"
+    }
+}
+```
+
+---
+
+# Servlets
+
+## Context
+
+> There are three levels of contexts.<br>
+> Depending on your use case certain information should be stored / accessed within different contexts.
+
+### **Request**
+```java
+import javax.servlet.http.HttpServletRequest;
+
+// ...
+
+request.getAttribute("key1");
+```
+
+### **Session**
+```java
+import javax.servlet.http.HttpServletRequest;
+
+// ...
+
+request.getSession().getAttribute("key2");
+```
+
+### **Application**
+```java
+import javax.servlet.http.HttpServletRequest;
+
+// ...
+
+this.getServletContext().getAttribute("key3");
 ```
