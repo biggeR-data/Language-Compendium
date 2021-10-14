@@ -151,6 +151,24 @@ button.onclick(function(text) {
 button.onclick((text) => writer(text));
 ```
 
+### **String interpolation**
+```javascript
+const actor = "Tony Stark";
+
+console.log(`${actor} is a great man!`)
+// Tony Stark is a great man!
+```
+
+> backticks are required to interpolate values into strings
+
+### **String Concatenation**
+```javascript
+const pi = "3.141";
+
+console.log("Pi equals approximately " + pi);
+// Pi equals approximately 3.141
+```
+
 ---
 
 ## Variables
@@ -255,6 +273,9 @@ document.querySelector(".container").appendChild(paragraph);
 let displayed_text = $("#special").text();
 console.log(displayed_text); // Number One
 
+// Access a input element
+let entered_text = $("#input").val();
+
 // Access via CSS selectors for classes
 displayed text = $(".container .item").get(0);
 console.log(displayed_text); // Number Two
@@ -262,6 +283,10 @@ console.log(displayed_text); // Number Two
 // appending
 $(".container").append('<p class="item">Number Four</p>')
 // <p class="item">Number Four</p> appended after Number Three
+
+// checking whether an input type=checkbox element is selected
+let on_off = $("#mycheckbox:checked").val();
+// if on_off = "on" it is selected, otherwise on_off = undefined
 ```
 
 ---
