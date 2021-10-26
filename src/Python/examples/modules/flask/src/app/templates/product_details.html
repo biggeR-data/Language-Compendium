@@ -1,0 +1,16 @@
+{% extends "index.html"%}
+
+{% block body %}
+{{ country }}
+
+{% if product_id == "test" %}
+<p>Debugging</p>
+{% endif %}
+
+<ul>
+    {% for option in options %}
+    <li>option</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

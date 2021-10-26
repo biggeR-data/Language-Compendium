@@ -1,0 +1,14 @@
+{% extends "index.html"%}
+
+{% block body %}
+
+<form action="/" method="post">
+    <select name="country_id" id="country_selector">
+        <option value="1">Germany</option>
+        <option value="2">Swiss</option>
+        <option value="3">Austria</option>
+    </select>
+    <input type="submit">
+</form>
+
+{% endblock %}
