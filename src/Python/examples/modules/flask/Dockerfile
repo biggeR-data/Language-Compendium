@@ -4,13 +4,14 @@ USER root
 
 WORKDIR /usr/src/app
 
-COPY requirements./
-run pip install --no-cache-dir -r requirements.txt
+COPY requirements ./
 
-COPY ..
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
 
 EXPOSE 8080
 
 ENTRYPOINT ["python"]
 
-CMD ["/src/run.py"]
+CMD ["run.py"]
