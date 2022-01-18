@@ -4,6 +4,7 @@ My own personal collection of Python Code. Good to knows and more.
 # To-Do's
 - [ ] Modules and Packaging with \_\_init__
 - [X] restructuring
+- [ ] numpy arrays & vectors
 
 
 # General
@@ -199,6 +200,17 @@ two_columns_combination = pd.crosstab(df.fur_color,df.size_in_cm)
 | grey  | 0  | 1   | 1   |
 | white | 0  | 1   | 0   |
 | black | 1  | 0   | 0   |
+
+## Pip
+
+pip install pip-autoremove
+
+pip-autoremove packagename -y
+
+
+pip install deptree
+
+deptree
 
 ## Flask
 
