@@ -42,7 +42,7 @@ USE ex;
 
 exemplary table creation:
 ```sql
-CREATE TABLE "schema"."table1" (
+CREATE TABLE schema1.table1 (
     Attribute1 INT DEFAULT 1,
     Attribute2 VARCHAR(20) NOT NULL,
     CONSTRAINT "constraint-name" FOREIGN KEY(Attribute1) REFERENCES table2(relatedAttributed)
@@ -103,11 +103,6 @@ Table: Transaction
 | C5         | A4        | B3       | 2        | 04.02.2006 |
 | C6         | A2        | B3       | 2        | 25.03.2006 |
 
-> Adding rows:
-```sql
-INSERT INTO "schema"."Table" ("Attribute1", "Attribute2") VALUES("Attr1-Value", "Attr2-Value");
-```
-
 ---
 
 <br>
@@ -139,6 +134,20 @@ SELECT ArticleID, Price FROM ex.Article;
 ### **Duplicate removal - DISTINCT Statement**
 ```sql
 SELECT DISTINCT Location FROM ex.Customer;
+```
+
+## View
+
+> `VIEW` is an option to create something like a macro on a certain table view, also enabling queries not breaking if tables are changed later on. 
+
+```sql
+CREATE VIEW viewName (Attribute1, Attribute2) AS SELECT ...
+```
+
+## Index
+
+```sql
+CREATE UNIQUE INDEX myIndexName ON myTableName (Attribute1 ASC, Attribute2 DESC)
 ```
 
 ---
@@ -346,6 +355,12 @@ SELECT Location from ex.Customer;
 | Liverpool  |
 | Cambridge  |
 
+<br>
+
+## Projection
+
+> A projection poses a reduction in columns but not rows.
+
 ---
 
 <br>
@@ -487,3 +502,131 @@ FROM ex.Customer
 | NULL       | NULL     | Glasgow    | NULL         | B3       |
 
 ---
+
+## Schemas
+
+Create
+```sql
+CREATE SCHEMA mySchemaName
+```
+
+Delete
+```sql
+DROP SCHEMA mySchemaName
+```
+
+Select default schema
+```sql
+USE mySchemaName
+```
+
+---
+
+## Data types
+
+### **Numbers**
+
+| Datatype                                                      | Description                                                                  |
+|---------------------------------------------------------------|------------------------------------------------------------------------------|
+| INT or INTEGER                                                | whole number -2*E31 until 2*E31 -1                                           |
+| SMALLINT                                                      | whole number -2*E15 until 2*E15 -1                                           |
+| BIGINT                                                        | biggest whole number possible                                                |
+| DEC or DECIMAL or DECIMAL(p,q) NUM or NUMERIC or NUMERIC(p,q) | decimal number, p digits before the comma/dot & q digits after the comma/dot |
+| FLOAT or FLOAT(p)                                             | floating point number in 4 byte representation                               |
+| REAL or DOUBLE PRECISION                                      | real number, double precision is what the name promises                      |
+
+### **Text**
+
+| Datatype                             | Description                                                          |
+|--------------------------------------|----------------------------------------------------------------------|
+| CHARACTER(n) or CHAR(n)              | alpha-numeric fixed length n string, rest will be filled with blanks |
+| VARCHAR(n) or CHARACTER VARYING(n)   | alpha-numeric variable length of max n string                        |
+| NVARCHAR(n)                          | Unicode strings                                                      |
+| CLOB(n) or CHARACTER LARGE OBJECT(n) | string with max n characters, can be specified in K/M/G Byte size    |
+| BINARY LARGE OBJECT(n) or BLOB(n)    | binary representation                                                |
+| BOOLEAN                              | true/false/unknown                                                   |
+
+### **Time**
+
+| Datatype  | Description                                    |
+|-----------|------------------------------------------------|
+| DATE      | string in "YYYY-MM-DD" representation          |
+| TIME      | string in "HH-MM-SS" representation            |
+| TIMESTAMP | string in "YYYY-MM-DD HH-MM-SS" representation |
+
+## Datatype conditions
+
+- NOT NULL
+- DEFAULT <value>
+- UNIQUE KEY
+- PRIMARY KEY
+- FOREIGN KEY <attribute> REFERENCES <table>
+- CONSTRAINT
+
+---
+
+## Tables
+
+Create
+```sql
+
+```
+
+Delete
+```sql
+DROP TABLE mySchemaName.myTableName
+```
+
+## Insert
+
+Adding rows
+```sql
+INSERT INTO schema1.table1 ("Attribute1", "Attribute2") VALUES("Attr1-Value", "Attr2-Value"),("SecondRow", "added");
+```
+
+Adding rows from one table to another permanently
+```sql
+INSERT INTO table1 (att1, att2, att3)
+    SELECT foreignAtt1, foreignAtt2, foreignAtt3
+    FROM foreignTable
+    WHERE foreignAtt4 = "condition";
+```
+
+## Update
+
+single entry
+```sql
+UPDATE tableName
+    SET attName = "new value", attName2 = 100
+    WHERE myID = "target";
+```
+
+all entries
+```sql
+UPDATE tableName
+    SET price = price * 1.1;
+```
+
+## Delete
+
+all entries
+```sql
+DELETE FROM table1
+```
+
+single entry
+```sql
+DELETE FROM table1 WHERE myID = "badCustomer";
+```
+
+---
+
+## Functions
+
+### **Coalesce** if null then
+
+```sql
+coalesce(a, b)
+```
+
+> if a is null we use value b, otherwise we receive the value a
