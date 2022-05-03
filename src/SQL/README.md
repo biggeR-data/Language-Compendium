@@ -136,6 +136,12 @@ SELECT ArticleID, Price FROM ex.Article;
 SELECT DISTINCT Location FROM ex.Customer;
 ```
 
+### **Subselects**
+```sql
+SELECT Quantity - (SELECT AVG(Quantity) FROM Transaction) as DEV_FROM_AVG_QTY, Date, CustomerID FROM Transaction ORDER BY DEV_FROM_AVG_QTY ASC;
+SELECT * FROM Customer NATURAL JOIN (SELECT MAX(Quantity) as Largest_Purchase FROM Transaction GROUP BY CustomerID);
+```
+
 ## View
 
 > `VIEW` is an option to create something like a macro on a certain table view, also enabling queries not breaking if tables are changed later on. 
