@@ -192,6 +192,7 @@ SELECT * FROM ex.Article WHERE Price BETWEEN 100 AND 1000;
 
 > % - any character - length: 0-n <br>
 > _ - any character - length: 1 (-> Wildcard)
+> $ to escape special characters
 
 ```sql
 SELECT * FROM ex.Branch WHERE Location LIKE "%o_";
