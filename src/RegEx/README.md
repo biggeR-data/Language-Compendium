@@ -24,3 +24,5 @@ Code Snippet
 ---
 
 ? = optional
+
+\b = word boundary (white space or dot for example)
